@@ -11,7 +11,7 @@
 ## Recently edited on:
 ##
 ## Notes:
-# A) 
+# A) Also calculates population change 1950 to 2010
 ## ***************************************************************** #
 
 # -------- ####
@@ -20,6 +20,7 @@
 library(tigris)
 library(tidycensus)
 library(ipumsr)
+library(latticeExtra)
 
 # ---- ####
 # Data #
