@@ -2,6 +2,7 @@
 ## Obtaining and visualizing spatial data from the U.S. Census Bureau
 ## ---------------------
 ## Using population densities in 2010 and 1950 as examples
+## Western United States
 ##
 ## Created by: Ian Buller
 ## Created on: November 19, 2018
@@ -20,9 +21,11 @@ library(tigris)
 library(tidycensus)
 library(ipumsr)
 
-# ------- START: FIGURE FOR HUMAN POPULATION 2010 ------- #
+# ---- ####
+# Data #
+# ---- ####
 # County Shapefiles (Based on 2010 County Boundaries)
-invisible(capture.output(wus_county <- tigris::counties(state=c("Arizona", "California", "Colorado", "Idaho", "Kansas", "Montana", "Nebraska", "Nevada", "New Mexico", "North Dakota", "Oklahoma", "Oregon", "South Dakota", "Texas", "Utah", "Washington", "Wyoming"))))
+wus_county <- tigris::counties(state=c("Arizona", "California", "Colorado", "Idaho", "Kansas", "Montana", "Nebraska", "Nevada", "New Mexico", "North Dakota", "Oklahoma", "Oregon", "South Dakota", "Texas", "Utah", "Washington", "Wyoming"))
 
 # 2010 Population U.S. Cenus Bureau
 census_key <- "fc5d15c784d9dfb3daeba8c20f3870c9b7059aa6" # Personal Key for Ian Buller
@@ -92,28 +95,7 @@ spplot(wus_merged_pop_aea,
        par.settings = list(axis.line = list(col =  'transparent')),
        colorkey=list(labels = list(labels = at_names, cex = 4, fontfamily='LM Roman 10', fontface = 1))
 )
-invisible(dev.off())
-
-# # Missing counties in 1950
-#   # Broomfield County, CO (2001, from Boulder County)
-#   # Cibola County, NM (1981, from Valencia County)
-#   # La Paz County, AZ (1983, from Yuma County)
-#   wus_merged_pop_aea_na <- wus_merged_pop_aea[is.na(wus_merged_pop_aea$DENSITY_50),]
-#   wus_merged_pop_aea_na$DENSITY_50_reclass <- -9999
-# # Breaks for colorkey
-#   at <- c(0, 200, 400, 600, 800, 1000)
-#   at_names <- c("0", "200", "400", "600", "800", ">1000")
-# 
-#   png(file = "pop_1950.png", width = 2000, height = 1600)
-#   spplot(wus_merged_pop_aea,
-#        "DENSITY_50_reclass",
-#        col.regions=rev(heat.colors(101)),
-#        par.settings = list(axis.line = list(col =  'transparent')),
-#        colorkey=list(labels = list(labels = at_names, cex = 4, fontfamily='LM Roman 10', fontface = 1))
-#   ) +  latticeExtra::as.layer(spplot(wus_merged_pop_aea_na,
-#                                     "DENSITY_50_reclass",
-#                                   col.regions = "black"), under = F)
-#   invisible(dev.off())
+dev.off()
 
 # Missing counties since 1950
 # Broomfield County, CO (2001, from Boulder County)
@@ -140,5 +122,4 @@ sp::spplot(wus_merged_pop_aea,
 ) + latticeExtra::as.layer(spplot(wus_merged_pop_aea_na, 
                                   "DENSITY_5010_reclass",
                                   col.regions = "black"), under = F)
-invisible(dev.off())
-# ------- END: FIGURE FOR HUMAN POPULATION 2010 ------- #
+dev.off()
