@@ -6,7 +6,7 @@
 ##
 ## Created by: Ian Buller
 ## Created on: November 19, 2018
-## 
+##
 ## Recently edited by:
 ## Recently edited on:
 ##
@@ -90,9 +90,9 @@ at_names <- c("0", "200", "400", "600", "800", ">1000")
 
 # Plot 2010 Population Density (sq kilometer)
 png(file = "pop_2010.png", width = 2000, height = 1600)
-spplot(wus_merged_pop_aea, 
-       "DENSITY_10_reclass", 
-       col.regions=rev(heat.colors(101)), 
+spplot(wus_merged_pop_aea,
+       "DENSITY_10_reclass",
+       col.regions=rev(heat.colors(101)),
        par.settings = list(axis.line = list(col =  'transparent')),
        colorkey=list(labels = list(labels = at_names, cex = 4, fontfamily='LM Roman 10', fontface = 1))
 )
@@ -113,14 +113,14 @@ palette <- c("Purple",palpos)
 
 # Plot Population Change Percent
 png(file = "pop_5010.png", width = 2000, height = 1600)
-sp::spplot(wus_merged_pop_aea, 
-           "DENSITY_5010_reclass", 
-           col.regions=palette, 
+sp::spplot(wus_merged_pop_aea,
+           "DENSITY_5010_reclass",
+           col.regions=palette,
            at = at,
            par.settings = list(axis.line = list(col =  'transparent')),
            colorkey=list(labels = list(labels = at_names, at = c(-81, at), cex = 4, fontfamily='LM Roman 10', fontface = 1)
-           ) 
-) + latticeExtra::as.layer(spplot(wus_merged_pop_aea_na, 
+           )
+) + latticeExtra::as.layer(spplot(wus_merged_pop_aea_na,
                                   "DENSITY_5010_reclass",
                                   col.regions = "black"), under = F)
 dev.off()
