@@ -29,7 +29,7 @@ library(latticeExtra)
 wus_county <- tigris::counties(state=c("Arizona", "California", "Colorado", "Idaho", "Kansas", "Montana", "Nebraska", "Nevada", "New Mexico", "North Dakota", "Oklahoma", "Oregon", "South Dakota", "Texas", "Utah", "Washington", "Wyoming"))
 
 # 2010 Population U.S. Cenus Bureau
-census_key <- "fc5d15c784d9dfb3daeba8c20f3870c9b7059aa6" # Personal Key for Ian Buller
+census_key <- "XXXXXX" # INSERT KEY HERE 
 vars_10 <- "P001001" # Population and total land area
 
 wus_population_data_2010 <- tidycensus::get_decennial(
